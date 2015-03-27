@@ -18,8 +18,6 @@ public class Interval {
 
 	public boolean includes(double value) {
 		switch (opening) {
-		case LEFT_OPENED:
-			return minimum < value && value <= maximum;
 		case RIGHT_OPENED:
 			return minimum <= value && value < maximum;
 		case UNOPENED:
