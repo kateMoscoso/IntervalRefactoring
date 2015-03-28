@@ -8,7 +8,10 @@ public class BothOpened {
 		return minimum < value && value < maximum;
 	}
 	public boolean includes(Interval interval) {
-
+		boolean minimumIncluded = this.includes(interval.minimum);
+		boolean maximumIncluded = this.includes(interval.maximum);
+		return (minimumIncluded || minimum == interval.minimum)
+				&& (maximumIncluded || maximum == interval.maximum);
 	}
 
 }

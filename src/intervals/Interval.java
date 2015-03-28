@@ -24,9 +24,7 @@ public abstract class Interval {
 		switch (opening) {
 		case BOTH_OPENED:
 			switch (interval.opening) {
-			case BOTH_OPENED:
-				return (minimumIncluded || minimum == interval.minimum)
-						&& (maximumIncluded || maximum == interval.maximum);
+
 			case LEFT_OPENED:
 				return (minimumIncluded || minimum == interval.minimum)
 						&& (maximumIncluded);
@@ -41,9 +39,7 @@ public abstract class Interval {
 			}
 		case LEFT_OPENED:
 			switch (interval.opening) {
-			case BOTH_OPENED:
-				return (minimumIncluded || minimum == interval.minimum)
-						&& (maximumIncluded || maximum == interval.maximum);
+
 			case LEFT_OPENED:
 				return (minimumIncluded || minimum == interval.minimum)
 						&& (maximumIncluded || maximum == interval.maximum);
@@ -60,8 +56,7 @@ public abstract class Interval {
 		case RIGHT_OPENED:
 			switch (interval.opening) {
 			case BOTH_OPENED:
-				return (minimumIncluded || minimum == interval.minimum)
-						&& (maximumIncluded || maximum == interval.maximum);
+
 			case LEFT_OPENED:
 				return (minimumIncluded || minimum == interval.minimum)
 						&& (maximumIncluded);
@@ -77,9 +72,7 @@ public abstract class Interval {
 			}
 		case UNOPENED:
 			switch (interval.opening) {
-			case BOTH_OPENED:
-				return (minimumIncluded || minimum == interval.minimum)
-						&& (maximumIncluded || maximum == interval.maximum);
+
 			case LEFT_OPENED:
 				return (minimumIncluded || minimum == interval.minimum)
 						&& (maximumIncluded || maximum == interval.maximum);
