@@ -1,9 +1,14 @@
 package intervals;
 
 public class BothOpened {
+	private double minimum;
+	private double maximum;
+	private Opening opening;
 	public boolean includes(double value) {
 		return minimum < value && value < maximum;
 	}
-	public boolean includes(Interval interval) {}
+	public boolean includes(Interval interval) {
+
+	}
 
 }
