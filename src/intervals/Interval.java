@@ -12,44 +12,11 @@ public abstract class Interval {
 		this.opening = opening;
 	}
 
-	
-
 	public abstract boolean includes(double value);
 
 	public abstract boolean includes(Interval interval); 
 
-	public boolean intersectsWith(Interval interval) {
-		if (minimum == interval.maximum) {
-			switch (opening) {
-			case BOTH_OPENED:
-			case LEFT_OPENED:
-				return false;
-			case RIGHT_OPENED:
-			case UNOPENED:
-				return interval.opening == Opening.LEFT_OPENED ||
-						interval.opening == Opening.UNOPENED;
-			default:
-				assert false;
-				return false;
-			}
-		}
-		if (maximum == interval.minimum) {
-			switch (opening) {
-			case BOTH_OPENED:
-			case RIGHT_OPENED:
-				return false;
-			case LEFT_OPENED:
-			case UNOPENED:
-				return interval.opening == Opening.RIGHT_OPENED ||
-						interval.opening == Opening.UNOPENED;
-			default:
-				assert false;
-				return false;
-			}
-		}
-		return this.includes(interval.minimum)
-				|| this.includes(interval.maximum);
-	}
+	public abstract boolean intersectsWith(Interval interval) ;
 
 	@Override
 	public String toString() {
@@ -61,6 +28,9 @@ public abstract class Interval {
 	public boolean equals(Object object) {
 		// TODO
 		return false;
+	}
+	public double midPoint() {
+		return (maximum + minimum) / 2;
 	}
 	public double getMinimum() {
 		return minimum;
@@ -86,7 +56,5 @@ public abstract class Interval {
 		this.opening = opening;
 	}
 
-	public double midPoint() {
-		return (maximum + minimum) / 2;
-	}
+
 }
