@@ -1,7 +1,7 @@
 package intervals;
 
 public class BothOpened extends Interval{
-	
+
 
 
 	public BothOpened(double minimum, double maximum, Opening opening) {
@@ -33,4 +33,14 @@ public class BothOpened extends Interval{
 		}
 	}
 
+	public boolean intersectsWith(Interval interval) {
+		if (this.getMinimum() == interval.getMaximum()) {
+			return false;
+		}
+		if (this.getMaximum() == interval.getMinimum()) {
+			return false;
+		}
+		return this.includes(interval.getMinimum())
+				|| this.includes(interval.getMaximum());
+	}
 }
