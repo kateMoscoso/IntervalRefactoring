@@ -12,33 +12,7 @@ public abstract class Interval {
 		this.opening = opening;
 	}
 
-	public double getMinimum() {
-		return minimum;
-	}
-
-	public void setMinimum(double minimum) {
-		this.minimum = minimum;
-	}
-
-	public double getMaximum() {
-		return maximum;
-	}
-
-	public void setMaximum(double maximum) {
-		this.maximum = maximum;
-	}
-
-	public Opening getOpening() {
-		return opening;
-	}
-
-	public void setOpening(Opening opening) {
-		this.opening = opening;
-	}
-
-	public double midPoint() {
-		return (maximum + minimum) / 2;
-	}
+	
 
 	public abstract boolean includes(double value);
 
@@ -48,6 +22,9 @@ public abstract class Interval {
 		switch (opening) {
 		case BOTH_OPENED:
 			switch (interval.opening) {
+			case BOTH_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
 			case LEFT_OPENED:
 				return (minimumIncluded || minimum == interval.minimum)
 						&& (maximumIncluded);
@@ -62,7 +39,9 @@ public abstract class Interval {
 			}
 		case LEFT_OPENED:
 			switch (interval.opening) {
-
+			case BOTH_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
 			case LEFT_OPENED:
 				return (minimumIncluded || minimum == interval.minimum)
 						&& (maximumIncluded || maximum == interval.maximum);
@@ -79,7 +58,8 @@ public abstract class Interval {
 		case RIGHT_OPENED:
 			switch (interval.opening) {
 			case BOTH_OPENED:
-
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
 			case LEFT_OPENED:
 				return (minimumIncluded || minimum == interval.minimum)
 						&& (maximumIncluded);
@@ -95,7 +75,9 @@ public abstract class Interval {
 			}
 		case UNOPENED:
 			switch (interval.opening) {
-
+			case BOTH_OPENED:
+				return (minimumIncluded || minimum == interval.minimum)
+						&& (maximumIncluded || maximum == interval.maximum);
 			case LEFT_OPENED:
 				return (minimumIncluded || minimum == interval.minimum)
 						&& (maximumIncluded || maximum == interval.maximum);
@@ -159,5 +141,31 @@ public abstract class Interval {
 		// TODO
 		return false;
 	}
+	public double getMinimum() {
+		return minimum;
+	}
 
+	public void setMinimum(double minimum) {
+		this.minimum = minimum;
+	}
+
+	public double getMaximum() {
+		return maximum;
+	}
+
+	public void setMaximum(double maximum) {
+		this.maximum = maximum;
+	}
+
+	public Opening getOpening() {
+		return opening;
+	}
+
+	public void setOpening(Opening opening) {
+		this.opening = opening;
+	}
+
+	public double midPoint() {
+		return (maximum + minimum) / 2;
+	}
 }
