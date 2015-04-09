@@ -12,11 +12,29 @@ public class BothOpened extends Interval{
 	public boolean includes(double value) {
 		return this.getMinimum() < value && value < this.getMaximum();
 	}
-	public boolean includes(Interval interval) {	
+	public boolean includes(Interval interval) {
+		boolean minimumIncluded = this.includes(interval.getMinimum());
+		boolean maximumIncluded = this.includes(interval.getMaximum());
+		switch (interval.getOpening()) {
+		case BOTH_OPENED:
+			return (minimumIncluded || this.getMinimum() == interval.getMinimum())
+					&& (maximumIncluded || this.getMaximum() == interval.getMaximum());
+		case LEFT_OPENED:
+			return (minimumIncluded || this.getMinimum() == interval.getMinimum())
+					&& (maximumIncluded);
+		case RIGHT_OPENED:
+			return (minimumIncluded)
+					&& (maximumIncluded || this.getMaximum() == interval.getMaximum());
+		case UNOPENED:
+			return interval.includes(this);
+//			return (minimumIncluded) && (maximumIncluded);
+		default:
+			assert false;
 			return false;
 		}
+	}
 	public boolean includes(BothOpened bothOpenedInterval) {
-		return (includes(bothOpenedInterval.getMinimum()) || this.getMinimum() == bothOpenedInterval.getMinimum())
+		return (includes(bothOpenedInterval.getMinimum()) || getMinimum() == bothOpenedInterval.getMinimum())
 				&& (includes(bothOpenedInterval.getMaximum()) || this.getMaximum() == bothOpenedInterval.getMaximum());
 	}
 	public boolean includes(LeftOpened leftOpenedInterval) {
@@ -28,7 +46,9 @@ public class BothOpened extends Interval{
 				&& (includes(rightOpenedInterval.getMaximum()) || this.getMaximum() == rightOpenedInterval.getMaximum());
 	}
 	public boolean includes(UnOpened unOpenedInterval) {
-		return (includes(unOpenedInterval.getMinimum())) && (includes(unOpenedInterval.getMaximum()));
+		boolean minimumIncluded = includes(unOpenedInterval.getMinimum());
+		boolean maximumIncluded = includes(unOpenedInterval.getMaximum());
+		return (minimumIncluded) && (maximumIncluded);
 	}
 	
 
