@@ -45,26 +45,26 @@ public class UnOpened extends Interval {
 
 	@Override
 	public boolean includes(BothOpened bothOpenedInterval) {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.includes(bothOpenedInterval.getMinimum()) || this.getMinimum() == bothOpenedInterval.getMinimum())
+				&& (this.includes(bothOpenedInterval.getMaximum())|| this.getMaximum() == bothOpenedInterval.getMaximum());
 	}
 
 	@Override
 	public boolean includes(LeftOpened leftOpenedInterval) {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.includes(leftOpenedInterval.getMinimum())|| this.getMinimum() == leftOpenedInterval.getMinimum())
+				&& (this.includes(leftOpenedInterval.getMaximum()) || this.getMaximum() == leftOpenedInterval.getMaximum());
 	}
 
 	@Override
 	public boolean includes(RightOpened rightOpenedInterval) {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.includes(rightOpenedInterval.getMinimum()) || this.getMinimum() == rightOpenedInterval.getMinimum())
+				&& (this.includes(rightOpenedInterval.getMaximum()) || getMaximum() == rightOpenedInterval.getMaximum());
 	}
 
 	@Override
 	public boolean includes(UnOpened unOpenedInterval) {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.includes( unOpenedInterval.getMinimum()) || this.getMinimum() ==  unOpenedInterval.getMinimum())
+				&& this.includes( unOpenedInterval.getMaximum()) || this.getMaximum() ==  unOpenedInterval.getMaximum();
 	}
 }
 
