@@ -42,4 +42,28 @@ public class LeftOpened extends Interval{
 		return this.includes(interval.getMinimum())
 				|| this.includes(interval.getMaximum());
 	}
+
+	@Override
+	public boolean includes(BothOpened bothOpenedInterval) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean includes(LeftOpened leftOpenedInterval) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean includes(RightOpened rightOpenedInterval) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean includes(UnOpened unOpenedInterval) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
