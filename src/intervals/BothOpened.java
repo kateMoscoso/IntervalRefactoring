@@ -13,7 +13,19 @@ public class BothOpened extends Interval{
 		return this.getMinimum() < value && value < this.getMaximum();
 	}
 	public boolean includes(Interval interval) {
-		return interval.includes(this);
+		switch (interval.getOpening()) {
+		case BOTH_OPENED:
+			return includes((BothOpened)interval); 
+		case LEFT_OPENED:
+			return includes((LeftOpened)interval);
+		case RIGHT_OPENED:
+			return includes((RightOpened)interval);
+		case UNOPENED:
+			return includes((UnOpened)interval);
+		default:
+			assert false;
+			return false;
+		}
 	}
 	public boolean includes(BothOpened interval) {
 		return (includes(interval.getMinimum()) || getMinimum() == interval.getMinimum())
