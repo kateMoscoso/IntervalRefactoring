@@ -3,7 +3,6 @@ package intervals;
 public class BothOpened extends Interval{
 
 
-
 	public BothOpened(double minimum, double maximum, Opening opening) {
 		super(minimum, maximum, opening);
 	}
@@ -44,7 +43,7 @@ public class BothOpened extends Interval{
 		boolean maximumIncluded = includes(interval.getMaximum());
 		return (minimumIncluded) && (maximumIncluded);
 	}
-	
+
 
 	public boolean intersectsWith(Interval interval) {
 		if (this.getMinimum() == interval.getMaximum()) {
