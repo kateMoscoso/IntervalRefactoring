@@ -2,9 +2,11 @@ package intervals;
 
 public class BothOpened extends Interval{
 
+	private Opening opening;
 
-	public BothOpened(double minimum, double maximum, Opening opening) {
-		super(minimum, maximum, opening);
+	public BothOpened(double minimum, double maximum) {
+		super(minimum, maximum);
+		this.opening = Opening.BOTH_OPENED;
 	}
 
 	@Override
@@ -14,7 +16,7 @@ public class BothOpened extends Interval{
 	public boolean includes(Interval interval) {
 		switch (interval.getOpening()) {
 		case BOTH_OPENED:
-			return includes((BothOpened)interval); 
+			return includes((BothOpened)interval);
 		case LEFT_OPENED:
 			return includes((LeftOpened)interval);
 		case RIGHT_OPENED:
@@ -39,11 +41,9 @@ public class BothOpened extends Interval{
 				&& (includes(interval.getMaximum()) || this.getMaximum() == interval.getMaximum());
 	}
 	public boolean includes(UnOpened interval) {
-		boolean minimumIncluded = includes(interval.getMinimum());
-		boolean maximumIncluded = includes(interval.getMaximum());
-		return (minimumIncluded) && (maximumIncluded);
+		return (includes(interval.getMinimum())) && includes(interval.getMaximum());
 	}
-
+	
 
 	public boolean intersectsWith(Interval interval) {
 		if (this.getMinimum() == interval.getMaximum()) {
@@ -54,5 +54,10 @@ public class BothOpened extends Interval{
 		}
 		return this.includes(interval.getMinimum())
 				|| this.includes(interval.getMaximum());
+	}
+
+	@Override
+	public Opening getOpening() {
+		return opening;
 	}
 }
