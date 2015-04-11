@@ -12,19 +12,8 @@ public class UnOpened extends Interval {
 		return this.getMinimum() <= value && value <= this.getMaximum();
 	}
 	public boolean includes(Interval interval) {
-		switch (interval.getOpening()) {
-		case BOTH_OPENED:
-			return includes((BothOpened)interval); 
-		case LEFT_OPENED:
-			return includes((LeftOpened)interval);
-		case RIGHT_OPENED:
-			return includes((RightOpened)interval);
-		case UNOPENED:
-			return includes((UnOpened)interval);
-		default:
-			assert false;
-			return false;
-		}
+		return (this.includes(interval.getMinimum())|| this.getMinimum() == interval.getMinimum())
+				&& (this.includes(interval.getMaximum()) || this.getMaximum() == interval.getMaximum());
 	}
 	public boolean intersectsWith(Interval interval) {
 		if (this.getMinimum() == interval.getMaximum()) {
@@ -52,9 +41,9 @@ public class UnOpened extends Interval {
 	}
 
 	@Override
-	public boolean includes(RightOpened rightOpenedInterval) {
-		return (this.includes(rightOpenedInterval.getMinimum()) || this.getMinimum() == rightOpenedInterval.getMinimum())
-				&& (this.includes(rightOpenedInterval.getMaximum()) || getMaximum() == rightOpenedInterval.getMaximum());
+	public boolean includes(RightOpened interval) {
+		return (this.includes(interval.getMinimum()) || this.getMinimum() == interval.getMinimum())
+				&& (this.includes(interval.getMaximum()) || getMaximum() == interval.getMaximum());
 	}
 
 	@Override
