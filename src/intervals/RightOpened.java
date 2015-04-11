@@ -1,9 +1,10 @@
 package intervals;
 
 public class RightOpened extends Interval {
-	public RightOpened(double minimum, double maximum, Opening opening) {
-		super(minimum, maximum, opening);
-		// TODO Auto-generated constructor stub
+	private Opening opening;
+	public RightOpened(double minimum, double maximum) {
+		super(minimum, maximum);
+		this.opening = Opening.RIGHT_OPENED;
 	}
 
 	public boolean includes(double value) {
@@ -58,6 +59,12 @@ public class RightOpened extends Interval {
 	public boolean includes(UnOpened interval) {
 		return (this.includes(interval.getMinimum()) || this.getMinimum() == interval.getMinimum())
 				&& (this.includes(interval.getMaximum()));
+	}
+
+	@Override
+	public Opening getOpening() {
+		// TODO Auto-generated method stub
+		return opening;
 	}
 }
 
