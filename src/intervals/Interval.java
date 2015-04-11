@@ -4,12 +4,10 @@ public abstract class Interval {
 
 	private double minimum;
 	private double maximum;
-	private Opening opening;
 
-	public Interval(double minimum, double maximum, Opening opening) {
+	public Interval(double minimum, double maximum) {
 		this.minimum = minimum;
 		this.maximum = maximum;
-		this.opening = opening;
 	}
 
 	public abstract boolean includes(double value);
@@ -52,13 +50,8 @@ public abstract class Interval {
 		this.maximum = maximum;
 	}
 
-	public Opening getOpening() {
-		return opening;
-	}
+	public abstract Opening getOpening();
 
-	public void setOpening(Opening opening) {
-		this.opening = opening;
-	}
 
 
 }
