@@ -14,42 +14,28 @@ public class BothOpened extends Interval{
 		return this.getMinimum() < value && value < this.getMaximum();
 	}
 	public boolean includes(Interval interval) {
-		switch (interval.getOpening()) {
-		case BOTH_OPENED:
-			return includes((BothOpened)interval);
-		case LEFT_OPENED:
-			return includes((LeftOpened)interval);
-		case RIGHT_OPENED:
-			return includes((RightOpened)interval);
-		case UNOPENED:
-			return includes((UnOpened)interval);
-		default:
-			assert false;
-			return false;
-		}
+		return interval.includes(this);
+
 	}
 	public boolean includes(BothOpened interval) {
-		return (includes(interval.getMinimum()) || getMinimum() == interval.getMinimum())
-				&& (includes(interval.getMaximum()) || this.getMaximum() == interval.getMaximum());
+		return (interval.includes(this.getMinimum()) || this.getMinimum() == interval.getMinimum())
+				&& (interval.includes(this.getMaximum()) || this.getMaximum() == interval.getMaximum());
 	}
 	public boolean includes(LeftOpened interval) {
-		return (includes(interval.getMinimum()) || this.getMinimum() == interval.getMinimum())
-				&& (includes(interval.getMaximum()));
+		return (interval.includes(this.getMinimum()) || this.getMinimum() == interval.getMinimum())
+				&& (interval.includes(this.getMaximum()));
 	}
 	public boolean includes(RightOpened interval) {
-		return (includes(interval.getMinimum()))
-				&& (includes(interval.getMaximum()) || this.getMaximum() == interval.getMaximum());
+		return (interval.includes(this.getMinimum()))
+				&& (interval.includes(this.getMaximum()) || this.getMaximum() == interval.getMaximum());
 	}
 	public boolean includes(UnOpened interval) {
-		return (includes(interval.getMinimum())) && includes(interval.getMaximum());
+		return (interval.includes(this.getMinimum())) && interval.includes(this.getMaximum());
 	}
 	
 
 	public boolean intersectsWith(Interval interval) {
-		if (this.getMinimum() == interval.getMaximum()) {
-			return false;
-		}
-		if (this.getMaximum() == interval.getMinimum()) {
+		if (this.getMinimum() == interval.getMaximum() || this.getMaximum() == interval.getMinimum()) {
 			return false;
 		}
 		return this.includes(interval.getMinimum())
@@ -58,6 +44,6 @@ public class BothOpened extends Interval{
 
 	@Override
 	public Opening getOpening() {
-		return opening;
+		return this.opening;
 	}
 }

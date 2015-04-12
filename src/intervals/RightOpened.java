@@ -11,19 +11,7 @@ public class RightOpened extends Interval {
 		return this.getMinimum() <= value && value < this.getMaximum();
 	}
 	public boolean includes(Interval interval) {
-		switch (interval.getOpening()) {
-		case BOTH_OPENED:
-			return includes((BothOpened)interval); 
-		case LEFT_OPENED:
-			return includes((LeftOpened)interval);
-		case RIGHT_OPENED:
-			return includes((RightOpened)interval);
-		case UNOPENED:
-			return includes((UnOpened)interval);
-		default:
-			assert false;
-			return false;
-		}
+		return interval.includes(this);
 	}
 	public boolean intersectsWith(Interval interval) {
 		if (this.getMinimum() == interval.getMaximum()) {
@@ -39,32 +27,31 @@ public class RightOpened extends Interval {
 
 	@Override
 	public boolean includes(BothOpened interval) {
-		return (this.includes(interval.getMinimum()) || this.getMinimum() == interval.getMinimum())
-				&& (this.includes(interval.getMaximum()) || this.getMaximum() == interval.getMaximum());
+		return (interval.includes(this.getMinimum()) )
+				&& (interval.includes(this.getMaximum()) || this.getMaximum() == interval.getMaximum());
 	}
 
 	@Override
 	public boolean includes(LeftOpened interval) {
-		return (this.includes(interval.getMinimum()) || this.getMinimum() == interval.getMinimum())
-				&& (this.includes(interval.getMaximum()));
+		return (interval.includes(this.getMinimum()) )
+				&& (interval.includes(this.getMaximum()) || this.getMaximum()== interval.getMaximum());
 	}
 
 	@Override
 	public boolean includes(RightOpened interval) {
-		return (this.includes(interval.getMinimum()) || this.getMinimum() == interval.getMinimum())
-				&& (this.includes(interval.getMaximum()) || this.getMaximum() == interval.getMaximum());
+		return (interval.includes(this.getMinimum()) || this.getMinimum() == interval.getMinimum())
+				&& (interval.includes(this.getMaximum()) || this.getMaximum() == interval.getMaximum());
 	}
 
 	@Override
 	public boolean includes(UnOpened interval) {
-		return (this.includes(interval.getMinimum()) || this.getMinimum() == interval.getMinimum())
-				&& (this.includes(interval.getMaximum()));
+		return (interval.includes(this.getMinimum()) || this.getMinimum() == interval.getMinimum())
+				&& (interval.includes(this.getMaximum()));
 	}
 
 	@Override
 	public Opening getOpening() {
-		// TODO Auto-generated method stub
-		return opening;
+		return this.opening;
 	}
 }
 
