@@ -2,10 +2,10 @@ package intervals;
 
 public abstract class Interval {
 
-	private double minimum;
-	private double maximum;
+	private Punto minimum;
+	private Punto maximum;
 
-	public Interval(double minimum, double maximum) {
+	public Interval(Punto minimum, Punto maximum) {
 		this.minimum = minimum;
 		this.maximum = maximum;
 	}
@@ -32,21 +32,21 @@ public abstract class Interval {
 		return false;
 	}
 	public double midPoint() {
-		return (maximum + minimum) / 2;
+		return (maximum.getValor() + minimum.getValor()) / 2;
 	}
 	public double getMinimum() {
-		return minimum;
+		return minimum.getValor();
 	}
 
-	public void setMinimum(double minimum) {
+	public void setMinimum(Punto minimum) {
 		this.minimum = minimum;
 	}
 
 	public double getMaximum() {
-		return maximum;
+		return maximum.getValor();
 	}
 
-	public void setMaximum(double maximum) {
+	public void setMaximum(Punto maximum) {
 		this.maximum = maximum;
 	}
 
