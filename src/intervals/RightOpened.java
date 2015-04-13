@@ -2,7 +2,7 @@ package intervals;
 
 public class RightOpened extends Interval {
 	private Opening opening;
-	public RightOpened(double minimum, double maximum) {
+	public RightOpened(Punto minimum, Punto maximum) {
 		super(minimum, maximum);
 		this.opening = Opening.RIGHT_OPENED;
 	}

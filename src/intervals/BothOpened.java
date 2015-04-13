@@ -4,7 +4,7 @@ public class BothOpened extends Interval{
 
 	private Opening opening;
 
-	public BothOpened(double minimum, double maximum) {
+	public BothOpened(Punto minimum, Punto maximum) {
 		super(minimum, maximum);
 		this.opening = Opening.BOTH_OPENED;
 	}
@@ -16,7 +16,7 @@ public class BothOpened extends Interval{
 	public boolean includes(Interval interval) {
 		return interval.includes(this);
 
-	}
+	} 
 	public boolean includes(BothOpened interval) {
 		return (interval.includes(this.getMinimum()) || this.getMinimum() == interval.getMinimum())
 				&& (interval.includes(this.getMaximum()) || this.getMaximum() == interval.getMaximum());
@@ -35,9 +35,9 @@ public class BothOpened extends Interval{
 	
 
 	public boolean intersectsWith(Interval interval) {
-		if (this.getMinimum() == interval.getMaximum() || this.getMaximum() == interval.getMinimum()) {
-			return false;
-		}
+//		if (this.getMinimum() == interval.getMaximum() || this.getMaximum() == interval.getMinimum()) {
+//			return false;
+//		}
 		return this.includes(interval.getMinimum())
 				|| this.includes(interval.getMaximum());
 	}

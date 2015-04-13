@@ -2,7 +2,7 @@ package intervals;
 
 public class LeftOpened extends Interval{
 	private Opening opening;
-	public LeftOpened(double minimum, double maximum) {
+	public LeftOpened(Punto minimum, Punto maximum) {
 		super(minimum, maximum);
 		this.opening = Opening.LEFT_OPENED;
 	}
@@ -36,24 +36,23 @@ public class LeftOpened extends Interval{
 	@Override
 	public boolean includes(LeftOpened interval) {
 		return (interval.includes(this.getMinimum()) || this.getMinimum() == interval.getMinimum())
-				&& (interval.includes(this.getMaximum())|| this.getMaximum() == interval.getMaximum());
+				&& (interval.includes(this.getMaximum()));
 	}
 
 	@Override
 	public boolean includes(RightOpened interval) {
-		return (interval.includes(this.getMinimum())|| this.getMinimum() == interval.getMinimum())
+		return (interval.includes(this.getMinimum())  || this.getMinimum() == interval.getMinimum())
 				&& (interval.includes(this.getMaximum()) );
 	}
 
 	@Override
 	public boolean includes(UnOpened interval) {
-		return (interval.includes(this.getMinimum()))
-				&& (interval.includes(this.getMaximum()) || this.getMaximum() == interval.getMaximum());
+		return (interval.includes(this.getMinimum()) || this.getMinimum() == interval.getMinimum())
+				&& (interval.includes(this.getMaximum()) );
 	}
 
 	@Override
 	public Opening getOpening() {
-		// TODO Auto-generated method stub
 		return this.opening;
 	}
 }
