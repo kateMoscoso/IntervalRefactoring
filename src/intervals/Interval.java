@@ -34,20 +34,28 @@ public abstract class Interval {
 	public double midPoint() {
 		return (maximum.getValor() + minimum.getValor()) / 2;
 	}
-	public double getMinimum() {
-		return minimum.getValor();
+	public Punto getMinimum() {
+		return minimum;
 	}
 
 	public void setMinimum(Punto minimum) {
 		this.minimum = minimum;
 	}
 
-	public double getMaximum() {
-		return maximum.getValor();
+	public Punto getMaximum() {
+		return maximum;
 	}
 
 	public void setMaximum(Punto maximum) {
 		this.maximum = maximum;
+	}
+	
+	public boolean equalsWithMinimum(Punto punto){
+		return punto.getValor() == this.getMinimum().getValor();
+	}
+	
+	public boolean equalsWithMaximum(Punto punto){
+		return punto.getValor() == this.getMaximum().getValor();
 	}
 
 	public abstract Opening getOpening();
