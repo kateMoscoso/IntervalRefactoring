@@ -35,7 +35,7 @@ public class BothOpened extends Interval{
 	
 
 	public boolean intersectsWith(Interval interval) {
-		if (this.getMinimum().getValor() == interval.getMaximum().getValor() || this.getMaximum().getValor() == interval.getMinimum().getValor()) {
+		if (this.equalsWithMinimum(interval.getMaximum()) || this.equalsWithMaximum(interval.getMinimum())) {
 			return false;
 		}
 		return this.includes(interval.getMinimum().getValor())

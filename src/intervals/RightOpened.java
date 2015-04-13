@@ -34,7 +34,7 @@ public class RightOpened extends Interval {
 	@Override
 	public boolean includes(LeftOpened interval) {
 		return (interval.includes(this.getMinimum().getValor()) )
-				&& (interval.includes(this.getMaximum().getValor()) || this.getMaximum()== interval.getMaximum());
+				&& (interval.includes(this.getMaximum().getValor()) || this.equalsWithMaximum(interval.getMaximum()));
 	}
 
 	@Override
