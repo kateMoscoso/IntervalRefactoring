@@ -14,5 +14,9 @@ public class Punto {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	
+	public boolean isEqualsValue(double value){
+		return this.getValor() == value;
+	}
 
 }
