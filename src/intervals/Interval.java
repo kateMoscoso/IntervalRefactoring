@@ -9,7 +9,7 @@ public abstract class Interval {
 		this.minimum = minimum;
 		this.maximum = maximum;
 	}
-
+	
 	public abstract boolean includes(double value);
 
 	public abstract boolean includes(Interval interval); 
