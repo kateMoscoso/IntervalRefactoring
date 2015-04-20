@@ -15,8 +15,14 @@ public class Punto {
 		this.valor = valor;
 	}
 	
-	public boolean isEqualsValue(double value){
+/*	public boolean isEqualsValue(double value){
 		return this.getValor() == value;
 	}
+	*/
+	public boolean equals(Punto punto){
+		return this.getValor() == punto.getValor();
+	}
+	
+
 
 }
