@@ -10,9 +10,11 @@ public class RightOpened extends Interval {
 	public boolean includes(double value) {
 		return this.getMinimum().isLessThanOrEquals(value) && this.getMaximum().isGreaterThan(value);
 	}
+	
 	public boolean includes(Interval interval) {
 		return interval.includes(this);
 	}
+	
 	public boolean intersectsWith(Interval interval) {
 		if (this.getMinimum().equals(interval.getMaximum())) {
 			return interval.getOpening() == Opening.LEFT_OPENED ||
