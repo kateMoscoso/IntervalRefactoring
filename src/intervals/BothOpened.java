@@ -11,7 +11,7 @@ public class BothOpened extends Interval{
 
 	@Override
 	public boolean includes(double value) {
-		return this.getMinimum().getValor() < value && value < this.getMaximum().getValor();
+		return this.getMinimum().isLessThan(value) && this.getMaximum().isGreaterThan(value);
 	}
 	public boolean includes(Interval interval) {
 		return interval.includes(this);

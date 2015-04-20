@@ -8,7 +8,7 @@ public class RightOpened extends Interval {
 	}
 
 	public boolean includes(double value) {
-		return this.getMinimum().getValor() <= value && value < this.getMaximum().getValor();
+		return this.getMinimum().isLessThanOrEquals(value) && this.getMaximum().isGreaterThan(value);
 	}
 	public boolean includes(Interval interval) {
 		return interval.includes(this);
