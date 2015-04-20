@@ -26,11 +26,6 @@ public abstract class Interval {
 		return null;
 	}
 
-	@Override
-	public boolean equals(Object object) {
-		// TODO
-		return false;
-	}
 	public double midPoint() {
 		return (maximum.getValor() + minimum.getValor()) / 2;
 	}

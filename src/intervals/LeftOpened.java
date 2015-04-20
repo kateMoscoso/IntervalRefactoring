@@ -15,10 +15,10 @@ public class LeftOpened extends Interval{
 	}
 
 	public boolean intersectsWith(Interval interval) {
-		if (this.equalsWithMinimum(interval.getMaximum())) {
+		if (this.getMinimum().equals(interval.getMaximum())) {
 			return false;
 		}
-		if (this.equalsWithMaximum(interval.getMinimum())) {
+		if (this.getMaximum().equals(interval.getMinimum())) {
 			return interval.getOpening() == Opening.RIGHT_OPENED ||
 					interval.getOpening() == Opening.UNOPENED;
 
@@ -29,25 +29,25 @@ public class LeftOpened extends Interval{
 
 	@Override
 	public boolean includes(BothOpened interval) {
-		return (interval.includes(this.getMinimum().getValor()) || this.equalsWithMinimum(interval.getMinimum()))
+		return (interval.includes(this.getMinimum().getValor()) || this.getMinimum().equals(interval.getMinimum()))
 				&& (interval.includes(this.getMaximum().getValor()));
 	}
 
 	@Override
 	public boolean includes(LeftOpened interval) {
-		return (interval.includes(this.getMinimum().getValor()) || this.equalsWithMinimum(interval.getMinimum()))
+		return (interval.includes(this.getMinimum().getValor()) || this.getMinimum().equals(interval.getMinimum()))
 				&& (interval.includes(this.getMaximum().getValor()));
 	}
 
 	@Override
 	public boolean includes(RightOpened interval) {
-		return (interval.includes(this.getMinimum().getValor())  || this.equalsWithMinimum(interval.getMinimum()))
+		return (interval.includes(this.getMinimum().getValor())  || this.getMinimum().equals(interval.getMinimum()))
 				&& (interval.includes(this.getMaximum().getValor()) );
 	}
 
 	@Override
 	public boolean includes(UnOpened interval) {
-		return (interval.includes(this.getMinimum().getValor()) || this.equalsWithMinimum(interval.getMinimum()))
+		return (interval.includes(this.getMinimum().getValor()) || this.getMinimum().equals(interval.getMinimum()))
 				&& (interval.includes(this.getMaximum().getValor()) );
 	}
 

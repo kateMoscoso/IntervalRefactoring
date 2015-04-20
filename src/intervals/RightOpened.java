@@ -14,11 +14,11 @@ public class RightOpened extends Interval {
 		return interval.includes(this);
 	}
 	public boolean intersectsWith(Interval interval) {
-		if (this.equalsWithMinimum(interval.getMaximum())) {
+		if (this.getMinimum().equals(interval.getMaximum())) {
 			return interval.getOpening() == Opening.LEFT_OPENED ||
 					interval.getOpening() == Opening.UNOPENED;
 		}
-		if (this.equalsWithMaximum(interval.getMinimum())) {
+		if (this.getMaximum().equals(interval.getMinimum())) {
 			return false;
 		}
 		return this.includes(interval.getMinimum().getValor())
@@ -28,24 +28,24 @@ public class RightOpened extends Interval {
 	@Override
 	public boolean includes(BothOpened interval) {
 		return (interval.includes(this.getMinimum().getValor()) )
-				&& (interval.includes(this.getMaximum().getValor()) || this.equalsWithMaximum(interval.getMaximum()));
+				&& (interval.includes(this.getMaximum().getValor()) || this.getMaximum().equals(interval.getMaximum()));
 	}
 
 	@Override
 	public boolean includes(LeftOpened interval) {
 		return (interval.includes(this.getMinimum().getValor()) )
-				&& (interval.includes(this.getMaximum().getValor()) || this.equalsWithMaximum(interval.getMaximum()));
+				&& (interval.includes(this.getMaximum().getValor()) || this.getMaximum().equals(interval.getMaximum()));
 	}
 
 	@Override
 	public boolean includes(RightOpened interval) {
-		return (interval.includes(this.getMinimum().getValor()) || this.equalsWithMinimum(interval.getMinimum()))
-				&& (interval.includes(this.getMaximum().getValor()) || this.equalsWithMaximum(interval.getMaximum()));
+		return (interval.includes(this.getMinimum().getValor()) || this.getMinimum().equals(interval.getMinimum()))
+				&& (interval.includes(this.getMaximum().getValor()) || this.getMaximum().equals(interval.getMaximum()));
 	}
 
 	@Override
 	public boolean includes(UnOpened interval) {
-		return (interval.includes(this.getMinimum().getValor()) || this.equalsWithMinimum(interval.getMinimum()))
+		return (interval.includes(this.getMinimum().getValor()) || this.getMinimum().equals(interval.getMinimum()))
 				&& (interval.includes(this.getMaximum().getValor()));
 	}
 
