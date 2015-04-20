@@ -22,7 +22,6 @@ public abstract class Interval {
 
 	@Override
 	public String toString() {
-		// TODO
 		return null;
 	}
 
