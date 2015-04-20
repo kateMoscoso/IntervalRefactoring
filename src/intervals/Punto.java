@@ -25,6 +25,18 @@ public class Punto {
 	public boolean isLessThan(double value){
 		return this.getValor() < value;
 	}
+
+	public boolean isGreaterThan(double value) {
+		// TODO Auto-generated method stub
+		return this.getValor()> value;
+	}
+
+	public boolean isLessThanOrEquals(double value) {
+		return this.getValor() <= value;
+	}
+	public boolean isGreaterThanOrEquals(double value) {
+		return this.getValor() >= value;
+	}
 	
 
 
