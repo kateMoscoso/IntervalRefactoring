@@ -50,13 +50,6 @@ public abstract class Interval {
 		this.maximum = maximum;
 	}
 	
-	public boolean equalsWithMinimum(Punto punto){
-		return punto.getValor() == this.getMinimum().getValor();
-	}
-	
-	public boolean equalsWithMaximum(Punto punto){
-		return punto.getValor() == this.getMaximum().getValor();
-	}
 
 	public abstract Opening getOpening();
 
