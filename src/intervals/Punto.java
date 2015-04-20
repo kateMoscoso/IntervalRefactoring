@@ -22,6 +22,9 @@ public class Punto {
 	public boolean equals(Punto punto){
 		return this.getValor() == punto.getValor();
 	}
+	public boolean isLessThan(double value){
+		return this.getValor() < value;
+	}
 	
 
 
